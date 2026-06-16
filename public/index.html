@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>메모장</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <!-- 로그인 화면 -->
+    <div id="login-screen" class="login-screen hidden">
+      <form id="login-form" class="login-box">
+        <h1>🗒️ 메모장</h1>
+        <p>비밀번호를 입력하세요.</p>
+        <input type="password" id="login-password" placeholder="비밀번호" autocomplete="current-password" />
+        <button type="submit">로그인</button>
+        <div id="login-error" class="login-error"></div>
+      </form>
+    </div>
+
+    <!-- 메인 앱 -->
+    <div id="app" class="app hidden">
+      <!-- 사이드바: 노트북 -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <span class="logo">🗒️ 메모장</span>
+        </div>
+        <nav class="nav">
+          <div class="nav-item" data-filter="all">📒 모든 노트</div>
+          <div class="nav-item" data-filter="favorite">⭐ 즐겨찾기</div>
+        </nav>
+        <div class="sidebar-section">
+          <div class="sidebar-section-head">
+            <span>노트북</span>
+            <button id="add-notebook" title="노트북 추가">＋</button>
+          </div>
+          <ul id="notebook-list" class="notebook-list"></ul>
+        </div>
+        <div class="sidebar-footer">
+          <button id="logout-btn" class="text-btn hidden">로그아웃</button>
+        </div>
+      </aside>
+
+      <!-- 노트 목록 -->
+      <section class="notes-pane">
+        <div class="notes-header">
+          <input type="search" id="search" placeholder="검색…" />
+          <button id="new-note" class="primary-btn" title="새 노트">＋ 새 노트</button>
+        </div>
+        <div id="notes-list" class="notes-list"></div>
+      </section>
+
+      <!-- 에디터 -->
+      <main class="editor-pane">
+        <div id="editor-empty" class="editor-empty">
+          <p>노트를 선택하거나 새로 만드세요.</p>
+        </div>
+        <div id="editor" class="editor hidden">
+          <div class="toolbar">
+            <button data-cmd="bold" title="굵게"><b>B</b></button>
+            <button data-cmd="italic" title="기울임"><i>I</i></button>
+            <button data-cmd="underline" title="밑줄"><u>U</u></button>
+            <button data-cmd="strikeThrough" title="취소선"><s>S</s></button>
+            <span class="divider"></span>
+            <button data-cmd="formatBlock" data-value="h1" title="제목1">H1</button>
+            <button data-cmd="formatBlock" data-value="h2" title="제목2">H2</button>
+            <button data-cmd="insertUnorderedList" title="목록">• 목록</button>
+            <button data-cmd="insertOrderedList" title="번호목록">1. 목록</button>
+            <button data-cmd="formatBlock" data-value="blockquote" title="인용">❝</button>
+            <span class="divider"></span>
+            <button data-cmd="createLink" title="링크">🔗</button>
+            <button data-cmd="removeFormat" title="서식제거">✕</button>
+            <span class="spacer"></span>
+            <span id="save-status" class="save-status"></span>
+            <button id="fav-btn" class="icon-btn" title="즐겨찾기">☆</button>
+            <button id="delete-note" class="icon-btn danger" title="삭제">🗑</button>
+          </div>
+          <input type="text" id="note-title" class="note-title" placeholder="제목" />
+          <div id="note-content" class="note-content" contenteditable="true"></div>
+          <div class="editor-meta">
+            <select id="note-notebook"></select>
+            <span id="note-time"></span>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
